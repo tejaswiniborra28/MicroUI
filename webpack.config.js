@@ -8,8 +8,8 @@ const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 
 module.exports = {
   entry: path.join(__dirname, "src", "index.tsx"),
-  output: { publicPath: "http://localhost:3001/", filename: "index.bundle.js" },
-  mode: "development",
+  // output: { publicPath: "http://localhost:3001/", filename: "index.bundle.js" },
+  // mode: "development",
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
   },
@@ -40,6 +40,50 @@ module.exports = {
         test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
         use: ["file-loader"],
       },
+
+      // {
+      //   test:/\.html$/i,
+      //   loader: "html-loader",
+      // },
+      // {
+      //   test:/\.css$/i,
+      //   use: [
+      //     "style-loader",
+      //     {
+      //       loader:"css-loader",
+      //       options: {
+      //         modules: true,
+      //       }
+      //     }
+      //   ]
+      // },
+      // {
+      //   test: /\.(png|jpeg|gif|jp2|webp)$/i,
+      //   loader: 'file-loader',
+      //   options:
+      //   { name: "assets/[name].[ext]",}
+      // },
+      // {
+      //   test: /\.tsx?$/,
+      //   use: "ts-loader",
+      //   exclude: '/node_modules/',
+      // },
+      // {
+      //   test: /\.(ts|js)x?$/,
+      //   exclude: /node_modules/,
+      //   use: [
+      //     {
+      //       loader: "babel-loader",
+      //       options: {
+      //         presets: [
+      //           "@babel/preset-env",
+      //           "@babel/preset-react",
+      //           "@babel/preset-typescript",
+      //         ],
+      //       }
+      //     }
+      //   ]
+      // }
     ],
   },
   devServer: {
@@ -47,7 +91,7 @@ module.exports = {
     static: {
       directory: path.join(__dirname, "public"),
     },
-
+    compress: true,
     hot: true,
     historyApiFallback: true,
   },
@@ -64,6 +108,7 @@ module.exports = {
         react: { singleton: true, requiredVersion: deps.react },
         "react-dom": {
           singleton: true,
+          // eager: true,
           requiredVersion: deps["react-dom"],
         },
         // react: { singleton: true, eager: true, requiredVersion: deps.react },
